@@ -118,7 +118,7 @@ def render_template(name: str, into: str, kwargs: dict):
     dest     = os.path.join(into, os.path.basename(fname))
     template = jinja_env.get_template(name)
     content  = template.render(**kwargs)
-    with open(dest, 'w') as f:
+    with open(dest, 'w', encoding='utf-8') as f:
         f.write(content)
 
 #** Classes **#
