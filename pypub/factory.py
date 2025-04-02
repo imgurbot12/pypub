@@ -108,6 +108,7 @@ def render_images(ctx: 'RenderCtx', chunk_size: int = 8192):
     for image in ctx.etree.xpath('.//img[@src]'):
         # cleanup link and resolve relative paths
         url = image.attrib['src'].rsplit('?', 1)[0]
+        fmt = (ctx.chapter.title, url)
         if '://' not in url:
             if not ctx.chapter.url:
                 ctx.logger.warning(
@@ -117,8 +118,6 @@ def render_images(ctx: 'RenderCtx', chunk_size: int = 8192):
         else:
             # make sure the url is properly encoded
             url = urllib.parse.quote(url, safe=":/")
-
-        fmt = (ctx.chapter.title, url)
         # skip if url has already been downloaded
         if url in downloads:
             image.attrib['src'] = downloads[url]
