@@ -4,6 +4,7 @@ Chapter Assignment and Processing Factories
 import html
 import os.path
 import urllib.request
+import requests
 from io import BytesIO
 from dataclasses import dataclass
 from typing import Optional
@@ -42,13 +43,16 @@ class Chapter:
 
 #** Functions **#
 
-def urlrequest(url: str, timeout: int = 10):
+def urlrequest(url: str, timeout: int = 10, proxies: object = None):
     """
     complete a url-request to the specified url
     """
+
     headers = {'User-Agent': user_agent}
-    req = urllib.request.Request(url, headers=headers)
-    return urllib.request.urlopen(req, timeout=timeout)
+    
+    response = requests.get(url, headers=headers, proxies=proxies, timeout = timeout)
+
+    return response
 
 def htmltostring(root: pyxml.html.HtmlElement) -> bytes:
     """
@@ -189,6 +193,7 @@ def create_chapter_from_url(
     title:         Optional[str] = None,
     title_xpath:   Optional[str] = None,
     content_xpath: Optional[str] = None,
+    proxies:     Optional[object] = None
 ) -> Chapter:
     """
     generate a chapter object from the given file
@@ -197,9 +202,10 @@ def create_chapter_from_url(
     :param title:         title used for the given chpater
     :param title_xpath:   xpath used to find title in html
     :param content_xpath: xpath used to find content in html
+    :param proxies:       proxy object for auth
     :param factory:       chapter factory override (for customization)
     """
-    res  = urlrequest(url, timeout=10)
-    html = convert_content(url, res.read())
+    res  = urlrequest(url, timeout=10, proxies = proxies)
+    html = convert_content(url, res.content)
     return create_chapter_from_html(html,
         title, url, title_xpath, content_xpath)
