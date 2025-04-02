@@ -114,8 +114,10 @@ def render_images(ctx: 'RenderCtx', chunk_size: int = 8192):
                 ctx.logger.warning(
                     'chapter[%s] cannot render image %r w/o chapter-url' % fmt)
                 continue
-            url = urllib.parse.urljoin(ctx.chapter.url, url)
-            fmt = (ctx.chapter.title, url)
+            url = urllib.parse.urljoin(ctx.chapter.url, urllib.parse.quote(url))
+        else:
+            # make sure the url is properly encoded
+            url = urllib.parse.quote(url, safe=":/")
         # skip if url has already been downloaded
         if url in downloads:
             image.attrib['src'] = downloads[url]
