@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pypub3"
+version = "2.0.8"
+license = "MIT"
+authors = [
+    {name = "Andrew Scott", email = "imgurbot12@gmail.com"},
+]
+description = "A python3 library to generate custom epub books."
+readme = "README.md"
+requires-python = ">=3.6"
+dependencies = [
+    "pyxml3>=0.0.2",
+    "Jinja2>=3.0.3",
+    "dataclasses>=0.6; python_version == '3.6'",
+    "pillow>=8.4.0",
+    "filetype>=1.2.0",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/imgurbot12/pypub.git"
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.setuptools.package-data]
+pypub = [
+    "templates/*",
+    "static/*",
+    "static/css/*",
+    "static/img/*",
+    "static/fonts/*",
+]
