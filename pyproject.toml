@@ -15,7 +15,7 @@ requires-python = ">=3.6"
 dependencies = [
     "pyxml3>=0.0.2",
     "Jinja2>=3.0.3",
-    "dataclasses>=0.6; python_version == '3.6'",
+    "dataclasses>=0.6; python_version=='3.6'",
     "pillow>=8.4.0",
     "filetype>=1.2.0",
 ]
