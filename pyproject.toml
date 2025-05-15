@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pypub3"
-version = "2.0.8"
+version = "2.0.9"
 requires-python = ">=3.8"
 dependencies = [
     "pyxml3>=0.0.2",
