@@ -1,36 +1,41 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pypub3"
 version = "2.0.8"
-#license = "MIT"
-license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+    "pyxml3>=0.0.2",
+    "Jinja2>=3.1.6",
+    "pillow>=10.4.0",
+    "filetype>=1.2.0"
+]
 authors = [
     {name = "Andrew Scott", email = "imgurbot12@gmail.com"},
 ]
 description = "A python3 library to generate custom epub books."
-readme = "README.md"
-requires-python = ">=3.6"
-dependencies = [
-    "pyxml3>=0.0.2",
-    "Jinja2>=3.0.3",
-    "dataclasses>=0.6; python_version=='3.6'",
-    "pillow>=8.4.0",
-    "filetype>=1.2.0",
-]
+readme = {file = "README.md", content-type = "text/markdown"}
+license = { file = "LICENSE" }
+keywords = ["epub", "ebook"]
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
     "Operating System :: OS Independent",
-    "License :: OSI Approved :: MIT License"
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
 ]
 
 [project.urls]
 Repository = "https://github.com/imgurbot12/pypub.git"
-
-[tool.setuptools.packages]
-find = {}
 
 [tool.setuptools.package-data]
 pypub = [
